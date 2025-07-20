@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Summarization with Gemini</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+            padding: 40px;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        textarea, button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .summary, .error {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .summary {
+            background-color: #e0f2f1;
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✏ Enter a text to be summarized</h2>
+        <form method="POST">
+            <textarea name="text" rows="8" placeholder="Write your text here...">{{ original_text or '' }}</textarea>
+            <button type="submit">Summarize</button>
+        </form>
+
+        {% if summary %}
+            <div class="summary">
+                <h4>📄 Summary:</h4>
+                <p>{{ summary }}</p>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
